@@ -29,7 +29,7 @@ dependencies (see Installation)
 
 ## Deployment
 
-Deployment is made to marlun-axis.surge.sh by running
+Deployment is made using surge.sh to marlun-axis.surge.sh by running
 
 	npm run deploy
 
