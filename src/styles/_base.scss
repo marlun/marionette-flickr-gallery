@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	background-color: #eee;
+}
+
+.site-wrapper {
+	margin: 20px auto;
+	width: 1000px;
+}
+
+.site-nav {
+	float: left;
+	width: 200px;
+	border: 1px solid #ddd;
+}
+
+.site-body {
+	margin-left: 220px;
+}

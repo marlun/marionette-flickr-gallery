@@ -1,0 +1,40 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "description": "Basic Backbone.js and Marionette.js Flickr gallery example",
+  "main": "index.js",
+  "scripts": {
+    "build:html": "html-minifier --collapse-whitespace ./src/index.html -o ./dist/index.html",
+    "build:css": "node-sass --ouput-style compressed ./src/styles/main.scss ./dist/css/style.css",
+    "build:js": "browserify ./src/js/main.js -t jstify | uglifyjs > ./dist/js/bundle.js",
+    "build": "npm run build:html & npm run build:css & npm run build:js",
+    "watch:html": "onchange src/index.html -- cp src/index.html dist/index.html",
+    "watch:css": "node-sass --watch --output-style expanded ./src/styles/main.scss ./dist/css/style.css",
+    "watch:js": "watchify ./src/js/main.js -v -t jstify -o ./dist/js/bundle.js",
+    "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
+    "start": "npm run watch & live-server --port=3000 ./dist",
+    "deploy": "npm run build && surge dist marlun-axis.surge.sh",
+    "test": "browserify test/**/*.js -t jstify | tape-run"
+  },
+  "author": "Martin Lundberg <martin.lundberg@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "html-minifier": "^0.8.0",
+    "jstify": "^0.13.0",
+    "live-server": "^0.8.2",
+    "node-sass": "^3.3.3",
+    "onchange": "^2.0.0",
+    "surge": "^0.17.2",
+    "tape": "^4.2.2",
+    "tape-run": "^2.1.0",
+    "uglify-js": "^2.5.0",
+    "watchify": "^3.6.0"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.marionette": "^2.4.3",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
+  }
+}
