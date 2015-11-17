@@ -10,12 +10,11 @@ module.exports = Marionette.CollectionView.extend({
 	className: 'gallery',
 	childView: CardView,
 	initialize: function() {
-		var self = this;
 		App.on('gallery:load', function(tags) {
 			fetchImages(tags, function(data) {
-				self.collection = new Backbone.Collection(data.items);
-				self.render();
-			});
-		});
+				this.collection = new Backbone.Collection(data.items);
+				this.render();
+			}.bind(this));
+		}.bind(this));
 	},
 });
