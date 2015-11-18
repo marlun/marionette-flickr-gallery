@@ -10,4 +10,4 @@ module.exports = function(tags, callback) {
 		format: "json"
 	};
 	$.getJSON(link, opts, callback);
-}
+};

@@ -8,18 +8,26 @@
     "build:css": "node-sass --ouput-style compressed ./src/styles/main.scss ./dist/css/style.css",
     "build:js": "browserify ./src/js/main.js -t jstify | uglifyjs > ./dist/js/bundle.js",
     "build": "npm run build:html & npm run build:css & npm run build:js",
+		"lint:js": "eslint src/js/",
+		"lint": "npm run lint:js",
     "watch:html": "onchange src/index.html -- cp src/index.html dist/index.html",
     "watch:css": "node-sass --watch --output-style expanded ./src/styles/main.scss ./dist/css/style.css",
     "watch:js": "watchify ./src/js/main.js -v -t jstify -o ./dist/js/bundle.js",
     "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
     "start": "npm run watch & live-server --port=3000 ./dist",
-    "deploy": "npm run build && surge dist marlun-axis.surge.sh",
+    "deploy": "npm run lint && npm run build && surge dist marlun-axis.surge.sh",
     "test": "browserify test/**/*.js -t jstify | tape-run"
   },
   "author": "Martin Lundberg <martin.lundberg@gmail.com>",
   "license": "ISC",
+	"eslintConfig": {
+		"rules": {
+			"semi": [2, "always"]
+		}
+	},
   "devDependencies": {
     "browserify": "^11.2.0",
+    "eslint": "^1.9.0",
     "html-minifier": "^0.8.0",
     "jstify": "^0.13.0",
     "live-server": "^0.8.2",
